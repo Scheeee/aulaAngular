@@ -1,0 +1,19 @@
+<p>livroslist works!</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Título:</th>
+            <th>Autor:</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let livro of lista">
+
+            <th>{{ livro.titulo }}</th>
+            <th>{{ livro.autor }}</th>
+            
+        </tr>
+    </tbody>
+</table>

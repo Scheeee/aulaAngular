@@ -1,0 +1,19 @@
+<p>carroslist works!</p>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Nome:</th>
+        <th>Ano:</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let carro of lista">
+
+        <th>{{ carro.nome }}</th>
+        <th>{{ carro.ano }}</th>
+        
+    </tr>
+    </tbody>
+</table>
