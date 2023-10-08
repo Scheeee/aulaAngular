@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +8,7 @@ import { PessoasListComponent } from './app/pessoa/pessoas-list/pessoas-list.com
 import { IndexComponent } from './layout/index/index.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { PessoadetailsComponent } from './app/pessoa/pessoas-list/pessoadetails/pessoadetails.component';
+import { PessoadetailsComponent } from './app/pessoa/pessoadetails/pessoadetails.component';
 import { LoginComponent } from './sistema/login/login.component';
 import { CarroslistComponent } from './carros/carroslist/carroslist.component';
 import { LivroslistComponent } from './livros/livroslist/livroslist.component';
@@ -34,7 +35,7 @@ import { LivrodetailsComponent } from './livros/livrodetails/livrodetails.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

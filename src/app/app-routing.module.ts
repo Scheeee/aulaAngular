@@ -5,7 +5,7 @@ import { LoginComponent } from './sistema/login/login.component';
 import { PessoasListComponent } from './app/pessoa/pessoas-list/pessoas-list.component';
 import { LivroslistComponent } from './livros/livroslist/livroslist.component';
 import { CarroslistComponent } from './carros/carroslist/carroslist.component';
-import { PessoadetailsComponent } from './app/pessoa/pessoas-list/pessoadetails/pessoadetails.component';
+import { PessoadetailsComponent } from './app/pessoa/pessoadetails/pessoadetails.component';
 import { LivrodetailsComponent } from './livros/livrodetails/livrodetails.component';
 import { CarrodetailsComponent } from './carros/carrodetails/carrodetails.component';
 
