@@ -15,9 +15,9 @@ export class LoginComponent  {
 
   logar(){
     if(this.usuario.usuario == "admin" && this.usuario.senha == "admin"){
-        this.roteador.navigate(['/adm/pessoas/login'])
+        this.roteador.navigate(['/adm/pessoas'])
     }else{
-      alert("Alguma coisa errada");
+      alert("Usuário ou senha incorretos!!");
     }
   }
     

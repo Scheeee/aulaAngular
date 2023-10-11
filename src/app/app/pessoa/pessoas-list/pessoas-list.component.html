@@ -1,26 +1,31 @@
-
-<table class="table table-hover">
+<div class="borda">
+    <h1>Listagem de pessoas</h1>
+<table class="table table-bordered table-hover">
     <thead> 
         <tr>
             <th>Nome:</th>
             <th>Idade:</th>
+            <th>opções:</th>
         
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-group-divider">
         <tr *ngFor = "let pessoa of lista">
                
                 <th>{{ pessoa.nome }}</th>
                 <th>{{ pessoa.idade }}</th>
+                <th><button type="button" class="btn btn-outline-warning">editar</button></th>
                    
         </tr>
     </tbody>
+    
 </table>
-<button type="button"class="btn btn-success" (click)="abrirModal(abc)" >adicionar pessoa</button>
+<div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="abrirModal(abc)" >adicionar pessoa</button></div>
 
+</div>
 <ng-template #abc let-modal>
 	<div class="modal-header" data-backdrop="false">
-		<h4 class="modal-title">Modal title</h4>
+		<h4 class="modal-title">Cadastro de pessoas</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
@@ -29,7 +34,7 @@
             
 	</div>
 	<div class="modal-footer">
-		<button type="button"class="btn btn-dark" data-dismiss="modal" (click)="modal.close('Close click')">Close</button>
+		<button type="button"class="btn btn-dark" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
 	</div>
 </ng-template>
 

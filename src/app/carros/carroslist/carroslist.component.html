@@ -1,28 +1,33 @@
-<p>carroslist works!</p>
+<div class="borda">
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Nome:</th>
-        <th>Ano:</th>
-    
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor = "let carro of lista">
+    <h1>Listagem de carros</h1>
 
-        <th>{{ carro.nome }}</th>
-        <th>{{ carro.ano }}</th>
-        
-    </tr>
-    </tbody>
-</table>
-<button type="button"class="btn btn-success" (click)="abrirModal(carroModal)" >adicionar carro</button>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome:</th>
+                <th>Ano:</th>
+                <th>opções:</th>
+            
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor = "let carro of lista">
 
+                <th>{{ carro.nome }}</th>
+                <th>{{ carro.ano }}</th>
+                <th><button type="button" class="btn btn-outline-warning">editar</button></th>
+                
+            </tr>
+        </tbody>
+    </table>
+    <div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="abrirModal(carroModal)" >adicionar carro</button></div>
+
+</div>
 
 <ng-template #carroModal let-modal>
 	<div class="modal-header" data-backdrop="false">
-		<h4 class="modal-title">Modal title</h4>
+		<h4 class="modal-title">Cadastro de carros</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
@@ -31,6 +36,6 @@
             
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">Close</button>
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
 	</div>
 </ng-template>

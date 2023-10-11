@@ -1,28 +1,35 @@
-<p>livroslist works!</p>
+<div class="borda">
+    
+    <h1>Listagem de Livros</h1>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Título:</th>
-            <th>Autor:</th>
-        
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = "let livro of lista">
+    <table class="table table-bordered table-hover">
+       
+            <thead>
+                <tr>
+                    <th scope="col">título:</th>
+                    <th scope="col">autor:</th>
+                    <th scope="col">opções:</th>
+                
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor = "let livro of lista">
 
-            <th>{{ livro.titulo }}</th>
-            <th>{{ livro.autor }}</th>
+                    <th>{{ livro.titulo }}</th>
+                    <th>{{ livro.autor }}</th>
+                    <th><button type="button" class="btn btn-outline-warning">editar</button></th>
+                    
+                </tr>
+            </tbody>
             
-        </tr>
-    </tbody>
-</table>
-<button type="button"class="btn btn-success" (click)="abrirModal(livroModal)" >cadastrar livro</button>
+    </table>
+    <div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="abrirModal(livroModal)" >adicionar livro</button></div>
 
+</div>
 
 <ng-template #livroModal let-modal>
 	<div class="modal-header" data-backdrop="false">
-		<h4 class="modal-title">Modal title</h4>
+		<h4 class="modal-title">Cadastro de livros</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
@@ -31,6 +38,6 @@
             
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">Close</button>
+		<button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close('Close click')">fechar</button>
 	</div>
 </ng-template>
