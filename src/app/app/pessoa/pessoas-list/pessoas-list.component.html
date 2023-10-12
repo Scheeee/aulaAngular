@@ -1,12 +1,12 @@
 <div class="borda">
     <h1>Listagem de pessoas</h1>
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" *ngIf="lista.length != 0">
     <thead> 
         <tr>
-            <th>ID</th>
+            <th>#ID</th>
             <th>Nome:</th>
             <th>Idade:</th>
-            <th>opções:</th>
+            <th>Opções:</th>
         
         </tr>
     </thead>

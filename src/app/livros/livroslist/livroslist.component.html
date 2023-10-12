@@ -2,13 +2,14 @@
     
     <h1>Listagem de Livros</h1>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" *ngIf="lista.length != 0">
        
             <thead>
                 <tr>
-                    <th scope="col">título:</th>
-                    <th scope="col">autor:</th>
-                    <th scope="col">opções:</th>
+                    <th>#ID</th>
+                    <th scope="col">Título:</th>
+                    <th scope="col">Autor:</th>
+                    <th scope="col">Opções:</th>
                 
                 </tr>
             </thead>
