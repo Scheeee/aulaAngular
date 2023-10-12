@@ -3,6 +3,7 @@
 <table class="table table-bordered table-hover">
     <thead> 
         <tr>
+            <th>ID</th>
             <th>Nome:</th>
             <th>Idade:</th>
             <th>opções:</th>
@@ -10,17 +11,19 @@
         </tr>
     </thead>
     <tbody class="table-group-divider">
-        <tr *ngFor = "let pessoa of lista">
+        <tr *ngFor = "let pessoa of lista; let i = index">
                
+             <th scope="row">{{ pessoa.id }}</th>
                 <th>{{ pessoa.nome }}</th>
                 <th>{{ pessoa.idade }}</th>
-                <th><button type="button" class="btn btn-outline-warning">editar</button></th>
+                <th><button class="btn btn-outline-warning" (click)="editar(abc, pessoa, i)">editar</button>
+                <button class="btn btn-outline-danger" (click)="deletar(pessoa.id)">excluir</button></th>
                    
         </tr>
     </tbody>
     
 </table>
-<div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="abrirModal(abc)" >adicionar pessoa</button></div>
+<div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(abc)" >adicionar pessoa</button></div>
 
 </div>
 <ng-template #abc let-modal>
@@ -30,7 +33,7 @@
 	</div>
 	<div class="modal-body">
 		
-        <app-pessoadetails (retorno)="addNaLista($event)" ></app-pessoadetails>
+        <app-pessoadetails [pessoa]="pessoaSelecionadaParaEdicao" (retorno)="addNaLista($event)" ></app-pessoadetails>
             
 	</div>
 	<div class="modal-footer">

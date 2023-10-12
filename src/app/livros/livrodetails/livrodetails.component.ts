@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Livro } from '../livro';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Livro } from 'src/app/models/livro';
+import { LivroService } from 'src/app/service/livro.service';
 
 
 @Component({
@@ -11,17 +10,21 @@ import { Livro } from '../livro';
 })
 export class LivrodetailsComponent  {
 
-  roteador = inject(ActivatedRoute);
- livro: Livro = new Livro;
-  
+  @Input() livro : Livro = new Livro();
+  @Output() retorno = new EventEmitter<Livro>();
 
- @Output() retorno = new EventEmitter<Livro>();
-
+  livroService = inject(LivroService);
   constructor(){}
-
- 
-  salvar(){
-    this.retorno.emit(this.livro);
+  salvar() {
+     this.livroService.save(this.livro).subscribe({
+      next: livro => { // QUANDO DÁ CERTO
+        this.retorno.emit(livro);
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { Carro } from '../carro';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Carro } from 'src/app/models/carro';
+import { CarroService } from 'src/app/service/carro.service';
 @Component({
   selector: 'app-carroslist',
   templateUrl: './carroslist.component.html',
@@ -9,44 +10,58 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class CarroslistComponent {
 
   lista: Carro[]=[];
-  modalService = inject(NgbModal)
+  carroSelecionadaParaEdicao: Carro = new Carro();
+  indiceSelecionadoParaEdicao!: number;
 
-  constructor(){
+  modalService = inject(NgbModal);
+  carroService = inject(CarroService);
 
-    let carro1: Carro = new Carro();
-    carro1.nome = "Porsche Cayenne";
-    carro1.ano = 2023;
+  constructor(){ this.listAll();}
 
-    let carro2: Carro = new Carro();
-    carro2.nome = "Porsche Panamera";
-    carro2.ano = 2019;
+  listAll() {
 
-    let carro3: Carro = new Carro();
-    carro3.nome = "Porsche Taycan";
-    carro3.ano = 2020;
+    this.carroService.listAll().subscribe({
+      next: lista => { // QUANDO DÁ CERTO
+        this.lista = lista;
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
 
-    let carro4: Carro = new Carro();
-    carro4.nome = "Porsche 911 carrera";
-    carro4.ano = 1990;
+  }
+  adicionar(modal: any) {
+    this.carroSelecionadaParaEdicao = new Carro();
 
- 
-
-
-    this.lista.push(carro1);
-    this.lista.push(carro2);
-    this.lista.push(carro3);
-    this.lista.push(carro4);
-   
+    this.modalService.open(modal, { size: 'sm' });
   }
 
-  abrirModal(carroModal : any){
-    this.modalService.open(carroModal, {size: 'lg'})
+  editar(modal: any, carro: Carro, indice: number) {
+    this.carroSelecionadaParaEdicao = Object.assign({}, carro); 
+    this.indiceSelecionadoParaEdicao = indice;
+
+    this.modalService.open(modal, { size: 'sm' });
   }
 
-  addList(carro: Carro){
+  deletar(id: number) {
 
-    this.lista.push(carro);
+    this.carroService.delete(id).subscribe({
+      next: lista => { // QUANDO DÁ CERTO
+        alert('deletado com sucesso!');
+        this.listAll();
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+
+  }
+  addList(carro: Carro) {
+
+    this.listAll();
     this.modalService.dismissAll();
+
   }
-  
 }

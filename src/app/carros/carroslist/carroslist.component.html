@@ -12,16 +12,17 @@
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            <tr *ngFor = "let carro of lista">
+            <tr *ngFor = "let carro of lista; let i = index">
 
+                <th scope="row">{{ carro.id }}</th>
                 <th>{{ carro.nome }}</th>
                 <th>{{ carro.ano }}</th>
-                <th><button type="button" class="btn btn-outline-warning">editar</button></th>
+                <th><button type="button" class="btn btn-outline-warning" (click)="editar(carroModal, carro, i)">editar</button><button class="btn btn-outline-danger" (click)="deletar(carro.id)">excluir</button></th>
                 
             </tr>
         </tbody>
     </table>
-    <div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="abrirModal(carroModal)" >adicionar carro</button></div>
+    <div id="btn"class="d-grid col-1 mx-auto"><button type="button"class="btn btn-success btn-lg d-flex justify-content-center" (click)="adicionar(carroModal)" >adicionar carro</button></div>
 
 </div>
 
@@ -32,7 +33,7 @@
 	</div>
 	<div class="modal-body">
 		
-        <app-carrodetails (retorno)="addList($event)" ></app-carrodetails>
+        <app-carrodetails [carro]="carroSelecionadaParaEdicao" (retorno)="addList($event)" ></app-carrodetails>
             
 	</div>
 	<div class="modal-footer">

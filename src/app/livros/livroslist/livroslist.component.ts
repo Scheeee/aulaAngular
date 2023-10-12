@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Livro } from '../livro';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Livro } from 'src/app/models/livro';
+import { LivroService } from 'src/app/service/livro.service';
+
 
 @Component({
   selector: 'app-livroslist',
@@ -10,41 +12,63 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class LivroslistComponent {
 
   lista: Livro[]=[];
+  livroSelecionadaParaEdicao: Livro = new Livro();
+  indiceSelecionadoParaEdicao!: number;
+
   modalService = inject(NgbModal);
+  livroService = inject(LivroService);
 
   constructor(){
-    let livro1: Livro = new Livro();
-    livro1.titulo = "Romeu e Julietta";
-    livro1.autor = "  William Shakespeare";
-
-    let livro2: Livro = new Livro();
-    livro2.titulo = "Odisseia";
-    livro2.autor = "Homero";
-
-    let livro3: Livro = new Livro();
-    livro3.titulo = "Os Lusíadas";
-    livro3.autor = " Luís Vaz de Camões";
-
-    let livro4: Livro = new Livro();
-    livro4.titulo = "Dom Quixote";
-    livro4.autor = "Miguel de Cervantes";
-
- 
-
-
-    this.lista.push(livro1);
-    this.lista.push(livro2);
-    this.lista.push(livro3);
-    this.lista.push(livro4);
+    this.listAll();
   }
 
-  abrirModal(livroModal: any){
-    this.modalService.open(livroModal, { size: 'lg' });
+  listAll() {
+
+    this.livroService.listAll().subscribe({
+      next: lista => { // QUANDO DÁ CERTO
+        this.lista = lista;
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+
+  }
+  adicionar(modal: any) {
+    this.livroSelecionadaParaEdicao = new Livro();
+
+    this.modalService.open(modal, { size: 'sm' });
   }
 
-  addList(livro: Livro){
-    this.lista.push(livro);
+  editar(modal: any, livro: Livro, indice: number) {
+    this.livroSelecionadaParaEdicao = Object.assign({}, livro); 
+    this.indiceSelecionadoParaEdicao = indice;
+
+    this.modalService.open(modal, { size: 'sm' });
+  }
+
+  deletar(id: number) {
+
+    this.livroService.delete(id).subscribe({
+      next: lista => { // QUANDO DÁ CERTO
+        alert('deletado com sucesso!');
+        this.listAll();
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+  }
+  addList(livro: Livro) {
+
+    this.listAll();
+
+   
+
     this.modalService.dismissAll();
+
   }
 
 

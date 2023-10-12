@@ -7,10 +7,9 @@ describe('CarrodetailsComponent', () => {
   let fixture: ComponentFixture<CarrodetailsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [ CarrodetailsComponent ]
-    })
-    .compileComponents();
+    });
 
     fixture = TestBed.createComponent(CarrodetailsComponent);
     component = fixture.componentInstance;
